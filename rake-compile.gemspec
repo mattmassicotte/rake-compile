@@ -7,9 +7,8 @@ Gem::Specification.new do |spec|
   spec.summary     = 'Rake-compile makes it easier to use rake to build native projects'
   spec.description = 'Rake-compile is a set of rake tasks and utitlies to help build native projects'
   spec.authors     = ['Matt Massicotte']
-  spec.email       = 'matt.massicotte@gmail.com'
   spec.files       = Dir.glob('lib/**/*.rb')
-  spec.homepage    = nil
+  spec.homepage    = 'https://github.com/mattmassicotte/rake-compile'
   spec.license     = 'MIT'
 
   spec.add_runtime_dependency 'colorize'
