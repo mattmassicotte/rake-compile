@@ -128,6 +128,9 @@ module RakeCompile
       deps = []
       if File.exist?(dependency_file)
         deps = dependencies_from_deps_file(dependency_file)
+
+        # if it came back empty, remove the file
+        FileUtils::rm(dependency_file) if deps.empty?
       end
 
       dir = File.dirname(dependency_file)
@@ -190,7 +193,7 @@ module RakeCompile
         deps = file.readlines()
       end
 
-      deps.collect {|x| x.chomp() }
+      deps.collect {|x| x.chomp() }.reject {|x| x.empty? }
     end
   end
 end

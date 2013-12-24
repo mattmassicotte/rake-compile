@@ -2,8 +2,8 @@
 
 Gem::Specification.new do |spec|
   spec.name        = 'rake-compile'
-  spec.version     = '0.1.2'
-  spec.date        = '2013-11-04'
+  spec.version     = '0.1.3'
+  spec.date        = '2013-12-24'
   spec.summary     = 'Rake-compile makes it easier to use rake to build C/C++ projects'
   spec.description = 'Rake-compile is a set of Rake DSL extensions to help build C/C++ projects'
   spec.authors     = ['Matt Massicotte']
