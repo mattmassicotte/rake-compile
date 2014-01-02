@@ -41,7 +41,7 @@ Here's a simple example that shows how the DSL is used.
     build_directory BUILD_DIR
 
     # define flags that will apply to all invocations of the default compiler
-    base_cpp_flags("-std=c++11 -stdlib=libc++ -I#{File.dirname(__FILE__)}")
+    base_cpp_flags("-std=c++11 -I#{File.dirname(__FILE__)}")
     base_cc_flags("-std=c11 -I#{File.dirname(__FILE__)}")
 
     # define a pre-compiled header, that will be applied to the subsequently-defined target

@@ -1,5 +1,5 @@
-require_relative 'application'
-require_relative 'dsl_definition'
+require File.join(File.dirname(__FILE__), 'application')
+require File.join(File.dirname(__FILE__), 'dsl_definition')
 
 module RakeCompile
   class Target
@@ -41,11 +41,18 @@ module RakeCompile
       return if RakeCompile::Application.app.pch.nil?
 
       pch_source = RakeCompile::Application.app.pch
-      pch_output = pch_source.ext('.gch')
-      pch_output = File.join(RakeCompile::Application.app.build_directory, pch_output)
-      self.pch   = File.absolute_path(pch_output)
+      header_output = File.join(RakeCompile::Application.app.build_directory, pch_source)
+      header_output = File.absolute_path(header_output)
+      self.pch = header_output + '.gch'
 
       define_object_dependencies(pch_source, self.pch)
+
+      # The source header for a pch needs to be in the same location for some
+      # compilers. So, we need to copy it.
+      file self.pch => header_output
+      file header_output => pch_source do
+        FileUtils.cp(pch_source, header_output)
+      end
     end
 
     def append_pch_to_flags(pch_file, flags)
@@ -80,7 +87,7 @@ module RakeCompile
       FileUtils.rm_f(self.name)
 
       RakeCompile.log("BIN".light_blue, self.name)
-      linker = 'c++ -std=c++11 -stdlib=libc++'
+      linker = 'c++ -std=c++11'
 
       inputs = self.objects.join("' '")
       libs = self.libraries.join("' '")

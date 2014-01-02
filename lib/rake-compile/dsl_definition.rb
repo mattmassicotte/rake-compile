@@ -1,5 +1,5 @@
-require_relative 'target'
-require_relative 'application'
+require File.join(File.dirname(__FILE__), 'target')
+require File.join(File.dirname(__FILE__), 'application')
 
 require 'rake/clean'
 
