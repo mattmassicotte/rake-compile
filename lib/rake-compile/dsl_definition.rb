@@ -26,6 +26,14 @@ module RakeCompile
       RakeCompile::Application.app.cpp_flags = flags
     end
 
+    def base_ld_flags(flags)
+      RakeCompile::Application.app.base_ld_flags = flags
+    end
+
+    def ld_flags(flags)
+      RakeCompile::Application.app.ld_flags = flags
+    end
+
     def link_library(library)
       RakeCompile::Application.app.libraries << library
     end

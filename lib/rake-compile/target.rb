@@ -96,6 +96,7 @@ module RakeCompile
       cmd += " -o '#{self.name}'"
       cmd += " '#{inputs}'"
       cmd += " '#{libs}'" if libs.length > 0
+      cmd += " #{RakeCompile::Application.app.full_ld_flags}"
 
       Rake::sh(cmd)
     end
@@ -185,11 +186,10 @@ module RakeCompile
       puts s if verbose() != false
       output = `#{s}`.chomp()
 
-      output.gsub!(" \\\n  ", " ")
-
-      dependencies = output.split(" ")
+      dependencies = output.split()
       dependencies.delete_at(0)  # remove the first element, which is the object file itself
-      dependencies.reject! { |x| x.empty? } # remove blanks
+      
+      dependencies.reject! { |x| x.empty? || x == '\\' } # remove blanks and line continuations
 
       dependencies.collect { |x| File.absolute_path(x) }
     end
