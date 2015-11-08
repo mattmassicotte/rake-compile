@@ -1,9 +1,8 @@
-rake-compile
-============
+# rake-compile
 
 rake-compile is a set of rake DSL extensions that are useful for building C and C++ projects.  I like rake a lot, but I found that I needed a lot of infrastructure in place to get a full build system going.  This gem just wraps up that functionality.
 
-Features:
+## Features
 
 - Automatic source dependency calculation
 - Dependency caching for faster rake invocations
@@ -11,10 +10,7 @@ Features:
 - Parallel building using rake's -j option
 - automatic clean and clobber
 
-Functions:
-
-    # This is just a like a FileTask, but it invokes all of its prerequisites in parallel
-    multifile
+## Functions
 
     # These methods apply to all targets defined, useful for setting up your build environment
     build_directory <path>
@@ -31,6 +27,8 @@ Functions:
     # object files that make up the final artifact
     static_library <path>
     executable <path>
+
+## Example
 
 Here's a simple example that shows how the DSL is used.
 
@@ -64,3 +62,28 @@ Here's a simple example that shows how the DSL is used.
       # or create a direct mapping from source to object
       target.add_object 'my_obj.o', 'special_source.cpp'
     end
+
+## Installation
+
+Add this line to your application's Gemfile:
+
+```ruby
+gem 'rake-compile'
+```
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install c-dependencies
+
+## Contributing
+
+This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
+## License
+
+The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+
