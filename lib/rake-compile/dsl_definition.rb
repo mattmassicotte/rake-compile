@@ -42,10 +42,6 @@ module RakeCompile
       RakeCompile::Application.app.pch = name
     end
 
-    def multifile(*args, &block)
-      RakeCompile::MultiFileTask.define_task(*args, &block)
-    end
-
     def static_library(name)
       Target.define_static_library_task(name) do |t|
         yield t

@@ -1,9 +1,7 @@
 require 'colorize'
+require 'rake-multifile'
 
-$:.unshift File.dirname(__FILE__)
-
-require File.join('rake-compile', 'logging')
-require File.join('rake-compile', 'install')
-require File.join('rake-compile', 'compiler')
-require File.join('rake-compile', 'multi_file_task')
-require File.join('rake-compile', 'dsl_definition')
+require 'rake-compile/logging'
+require 'rake-compile/install'
+require 'rake-compile/compiler'
+require 'rake-compile/dsl_definition'

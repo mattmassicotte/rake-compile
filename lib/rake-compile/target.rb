@@ -1,9 +1,12 @@
+require 'rake-multifile'
+
 require File.join(File.dirname(__FILE__), 'application')
 require File.join(File.dirname(__FILE__), 'dsl_definition')
 
 module RakeCompile
   class Target
     include Rake::DSL
+    include RakeMultifile::DSL
 
     attr_reader :objects
     attr_reader :name
@@ -78,7 +81,7 @@ module RakeCompile
 
       prereqs = [dir, self.objects, self.libraries].flatten
 
-      RakeCompile::MultiFileTask.define_task(self.name => prereqs) do
+      multifile self.name => prereqs do
         yield self
       end
     end
